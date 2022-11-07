@@ -21,4 +21,5 @@ model = RandomForestClassifier(n_estimators=100,max_depth=4,random_state=69)
 model.fit(xtrain,ytrain)
 predictions = model.predict(xtest)
 
-print("Accuracy = ",round((accuracy_score(ytest,predictions)*100),4),"%")
+print("Accuracy = ",round((accuracy_score(ytest,predictions)*100),4),"%") 
+print(" ")
