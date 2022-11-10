@@ -1,3 +1,4 @@
+#Importing all the libraries required
 import pytest
 import os.path
 from os import path
@@ -10,15 +11,18 @@ from sklearn.ensemble import RandomForestClassifier
 data = file_input()
 xtrain,xtest,ytrain,ytest = train_test_splitter(data)
 
+#test function to test if the file input works and doesnt get a empty file error
 def test_file_input():
     data= file_input()
     assert len(data)!=0
-    
+
+#the inital failing test function, just to see how it all works and how to resolve things, but is commented out to get all the tests as passed
 # def test_fail_file_input():
 #     data,test_data = fail_file_input()
 #     assert data!=data.empty
 #     assert test_data!=test_data.empty
 
+#test function to test if the splitter function has split the dataset into the desired shape and not have any empty datasets by mistake
 def test_train_test_splitter():
     shape_xtrain = (668, 5)
     shape_xtest = (223, 5)
@@ -30,7 +34,7 @@ def test_train_test_splitter():
     assert shape_ytest == ytest.shape
 
 
-
+#test function to test the predictions of the model, with 2 different inputs with both of them being with known outputs, which is compared to see if the model predicts the things correctly or not.
 def test_preds():
     model = model_gen(xtrain,ytrain)
     testing_not_survived = pd.DataFrame({
