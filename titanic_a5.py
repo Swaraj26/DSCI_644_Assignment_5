@@ -13,14 +13,12 @@ def fail_file_input():
 def file_input():
     data = pd.read_csv("C:/Users/swara/OneDrive/HW/SWDS/hw/Assignment_5/train.csv")
     test_data = pd.read_csv("C:/Users/swara/OneDrive/HW/SWDS/hw/Assignment_5/test.csv")
-    return data,test_data
+    return data
 
 def train_test_splitter(data):
     y = data['Survived']
     features = ['Pclass','Sex','SibSp','Parch']
     x = pd.get_dummies(data[features])
-    # X_test = pd.get_dummies(test_data[features])
-    # y_test = test_data[]
 
     xtrain,xtest,ytrain,ytest = train_test_split(x,y,test_size=0.25,random_state=420)
     return xtrain,xtest,ytrain,ytest
@@ -35,9 +33,10 @@ def preds(model,xtest,ytest):
     print("Accuracy = ",round((accuracy_score(ytest,predictions)*100),4),"%") 
 
 def main():
-    data,test_data = file_input()
+    data= file_input()
     xtrain,xtest,ytrain,ytest = train_test_splitter(data)
     model = model_gen(xtrain,ytrain)
+    print(model)
     preds(model,xtest,ytest)
 
 if __name__ == "__main__":
